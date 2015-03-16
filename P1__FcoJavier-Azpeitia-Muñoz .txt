@@ -8,9 +8,12 @@ layout del kyeboard (dpkg-reconfigure console-data). Al terminar estos
 pasos, todo ha ido correcto, es decir, he podido hacer ping entre la máquina 1
 y la máquina 2, ambas tienen acceso a internet correctamente.
 
-lanzando "apache2 -v:
+lanzando "apache2 -v":
 Server version_ Apache/2.2.22 (Ubuntu)
 Serer built: Mar  5 2015 18:10:11
+
+lanzando "ps aux | grep apache"
+consultar p1_img1.PNG
 
 He tardado algo mas en entregar la práctica por que estaba usando 
 Virtualbox inicialmente, pero he querido probar VMware Player, más que
