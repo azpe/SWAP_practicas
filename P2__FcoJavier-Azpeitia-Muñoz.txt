@@ -1,4 +1,4 @@
-------WORK IN PROGRESS------
+Ôªø------WORK IN PROGRESS------
 -comando que funciona para comprimir remotamente mediante SSH un directorio
 y traerlo al local:
 ssh user@host "tar -cf - /path/dir" | gzip > dir.tar.gz
@@ -6,17 +6,17 @@ para descomprimir:
 tar -xvzf file.tar.gz
 
 para acceder remotamente mediante ssh usando public keys en lugar
-de peticiÛn de password:
--CreaciÛn de una clave publica mediante:
+de petici√≥n de password:
+-Creaci√≥n de una clave publica mediante:
 ssh-kyegen -t dsa
-Esto nos generar· un par de claves privada-publica tipo dsa
+Esto nos generar√° un par de claves privada-publica tipo dsa
 El siguiente paso es agregar la clave publica en el equipo remoto,
 para esto podemos hacerlo de varias formas, la mas comoda es hacer
 uso del comando ssh-copy-id, tal que;
 ssh-copy-id -i .ssh/id_dsa.pub user@maquina_remota
-Con esto ya tenemos copiada la clave publica y no nos pedir· nunca mas
-la password al acceder a dicha m·quina. Si nos diese un error de acceso 
-al copiar la clave, es posible que la m·quina remota no tenga permisos
-para agregar la clave, habrÌa que darle permisos.
+Con esto ya tenemos copiada la clave publica y no nos pedir√° nunca mas
+la password al acceder a dicha m√°quina. Si nos diese un error de acceso 
+al copiar la clave, es posible que la m√°quina remota no tenga permisos
+para agregar la clave, habr√≠a que darle permisos.
 
 
