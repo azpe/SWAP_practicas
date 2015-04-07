@@ -1,0 +1,7 @@
+﻿Primera máquina a abrir: Ubuntu Server 2 con IP 192.168.136.129
+Segunda máquina a abrir: Ubuntu Server 1 con IP 192.168.136.128
+Tercera máquina a abrir: Ubuntu Server 3 Balanceador con IP 192.168.136.130
+Máquina para lanzar las baterias de pruebas: Máquina anfitriona Windows, con Apache Benchmark + Siege + JMeter
+Apache Benchmark instalado con XAMPP
+Siege instalado desde : https://code.google.com/p/siege-windows/
+JMeter instalado desde: http://jmeter.apache.org/usermanual/get-started.html
