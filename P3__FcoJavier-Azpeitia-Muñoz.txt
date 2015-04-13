@@ -1,0 +1,67 @@
+﻿----Falta pasarlo a MD----
+Pasos seguidos para el desarrollo de la práctica:
+1--Creación de una nueva máquina virtual llamada "Ubuntu Server 3 Balanceador"
+	Mediante VMware Player.	
+
+2--Instalación de Ubuntu Server 12.0.4 sin LAMP en la nueva máquina.
+	El mismo SO que en las máquinas de las prácticas previas pero SIN
+	LAMP
+
+3--Instalción de nginx en la nueva máquina
+	Varios pasos a seguir para instalar correctamente nginx:
+	-cd /tmp/    //Nos movemos al directorio temporal
+	-wget http://nginx.org/nginx_signing.key	//Solicitamos la key del repo de nginx
+	-apt-key add /tmp/nginx_signing.key	//añadimos la key a la lista de apt
+	-rm -f /tmp/nginx_signing.key	//Eliminamos la key de nginx de nuestro directorio temp
+	-Ahora tenemos que añadir el repositorio donde está nginx, para esto añadí 2 lineas en 
+		el fichero de repositorios de apt 
+	-sudo vim /etc/apt/sources.list
+		->Añadimos:
+		echo "deb http://nginx.org/packages/ubuntu/ lucid nginx" >> /etc/apt/sources.list
+		echo "deb-src http://nginx.org/packages/ubuntu/ lucid nginx" >> /etc/apt/sources.list
+	-Actualizamos apt mediante:
+	sudo apt-get update	//Esta operación puede tardar bastantes minutos, paciencia.
+	-Finalmente instalamos nginx 
+	sudo apt-get install nginx
+	
+	
+4--Configuración del fichero de configuración de nginx en la nueva máquina
+	Ya que nginx no fué ideado para ser una herramienta balanceadora por defeco, si no
+	que fué diseñada como un servidor web tenemos que configurarlo y que haga la tarea 
+	de balanceador. Para esto modificamos el siguiente fichero: (Si no existe, lo creamos)
+	/etc/nginxconfig.d/default.conf
+	Añadimos lo siguiente:
+	upstream apaches {
+ 		server 192.168.136.129; //Servidor con apache "Ubuntu Server 2"
+ 		server 195.168.136.128;	//Servidor con apache "Ubuntu Server 1"
+	}
+	server{
+ 		listen 80;	//Puerto de escucha, http usa el 80
+ 		server_name Mycosa;	//Nombre del servidor
+ 		access_log /var/log/nginx/Mycosa.access.log;
+ 		error_log /var/log/nginx/Mycosa.error.log;
+ 		root /var/www/;
+ 		location /
+ 		{
+ 			proxy_pass http://apaches;	//Aquí es donde se convierte en balanceador
+ 			proxy_set_header Host $host;
+			proxy_set_header X-Real-IP $remote_addr;
+ 			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+ 			proxy_http_version 1.1;
+ 			proxy_set_header Connection "";
+ 		}
+	}
+	
+
+5--Puesta en marcha de la tercera máquina con funcionalidad balanceadora
+	de las 2 máquinas virtuales "Ubuntu Server 1" y "Ubuntu Server 2"
+	que si tiene Apache funcionando y sirvierndo páginas web.
+	-sudo service nginx restart
+
+6--Comprobación de que funciona correctamente la máquina balanceadora pidiendole
+	paginas web y viendo que las sirve sin tener ella misma apache, pero si 
+	las máquinas que balancea.
+	-Mediante un navegador (Chrome) en la máquina anfitriona accediendo a la dirección
+	IP de la máquina "Ubuntu Server 3 Balanceador", es decir 192.168.136.130.
+	
+		
