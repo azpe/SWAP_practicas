@@ -85,13 +85,13 @@ Pasos seguidos para el desarrollo de la práctica:
 ----------------|| haproxy ||----------------
 
 
-3--Instalción de nginx en la nueva máquina
+3--Instalción de haproxy en la nueva máquina
 	Para instalar haproxy es sificiente con poner:
 	-sudo apt-get install haproxy
 	Con esta linea es sufiente para instalarlo.
 	
 	
-4--Configuración del fichero de configuración de nginx en la nueva máquina
+4--Configuración del fichero de configuración de haproxy en la nueva máquina
 	Para configurar haproxy como balanceador, he editado el fichero:
 	/etc/haproxy/haproxy.cfg
 	-Y rellene el fichero con lo siguiente:
