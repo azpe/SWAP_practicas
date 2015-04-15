@@ -27,7 +27,7 @@ Serer built: Mar  5 2015 18:10:11`**
 
 Lanzando "ps aux | grep apache"
 ---------------------------------
-consultar p1_img1.PNG
+consultar [Imagen](https://github.com/azpe/SWAP_practicas/blob/master/p1_img1.PNG?raw=true)
 
 He tardado algo mas en entregar la práctica por que estaba usando   
 Virtualbox inicialmente,
