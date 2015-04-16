@@ -1,0 +1,62 @@
+Práctica 2
+======
+
+
+Compresión de ficheros de forma remota:  
+---------------------------------------------
+  
+**comando** que funciona para comprimir remotamente mediante SSH un directorio
+y traerlo al local:  
+
+`ssh user@host "tar -cf - /path/dir" | gzip > dir.tar.gz`  
+
+para **descomprimir**:  
+
+`tar -xvzf file.tar.gz`
+
+
+Acceso remoto sin password mediante SSH:
+----------------------------------------------
+
+
+para acceder remotamente mediante ssh usando public keys en lugar
+de petición de password:
+
+**-Creación de una clave publica mediante:**  
+
+`ssh-kyegen -t dsa`
+
+
+Esto nos generará un par de claves privada-publica tipo dsa
+El siguiente paso es agregar la clave pública en el equipo remoto,
+para esto podemos hacerlo de varias formas, la mas comoda es hacer
+uso del comando *ssh-copy-id*, tal que;  
+
+`ssh-copy-id -i .ssh/id_dsa.pub user@maquina_remota`
+
+
+Con esto ya tenemos copiada la clave pública y no nos pedirá nunca mas
+la password al acceder a dicha máquina. Si nos diese un error de acceso 
+al copiar la clave, es posible que la máquina remota no tenga permisos
+para agregar la clave, habría que darle permisos.
+
+
+Mantener clonado el espacio web:
+-------------------------------------
+
+Crear una entrada en Cron para que periodicamente clone la información
+del directorio web del Servidor1 al Servidor2, teniendo así replicada
+la misma información en el Servidor1 y en el Servidor2.
+Para crear la tarea periódica lo ideal es usar Cron, que nos permite 
+justamente gestionar tareas periódicas facilmente editando el fichero: 
+*/etc/crontab*
+y añadiendo una nueva linea:  
+
+`* * * * * root rsync -avz -e ssh root@IP_Máquina_origen:/var/www/ /var/www`
+
+Mediante esta linea lo que queremos decir es que cada 30 segundos lance
+la aplicación rsync con permisos de root y que rsync se lance mediante
+una conexión ssh con usuario root a la máquina que tiene el contenido web
+que deseamos tener duplicado ya que los directorios usados son /var/www/, 
+que son los directorios de almacenamiento de los espacios web de Apache 
+por defecto.
