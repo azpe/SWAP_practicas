@@ -24,7 +24,9 @@ Donde la *X* indica el número de solicitudes a realizar, y la *Y* indica el num
 
 Esta es una captura tomada tras realizar una prueba a uno de los servidores finales (Ubuntu Server 1)  
 
-![](ab_128_500_10.png )  
+![](https://raw.githubusercontent.com/azpe/SWAP_practicas/master/Pr%C3%A1ctica%204/images/ab_128_500_10.PNG))  
+
+
 
 Her resaltado las medidas mas importantes y con las cuales voy a realizar unas tablas y unas gráficas para ilustrar estos resultados.  
 
