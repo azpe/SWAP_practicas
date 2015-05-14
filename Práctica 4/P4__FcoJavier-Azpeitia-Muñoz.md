@@ -30,3 +30,18 @@ Esta es una captura tomada tras realizar una prueba a uno de los servidores fina
 
 Her resaltado las medidas mas importantes y con las cuales voy a realizar unas tablas y unas gráficas para ilustrar estos resultados.  
 
+Tablas:
+--------
+
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%204/images/ab_table_finalserver1.png?raw=true)
+
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%204/images/ab_table_nginx.png?raw=true)
+
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%204/images/ab_table_haproxy.png?raw=true)
+
+
+Gráficas:
+---------
+
+
+
