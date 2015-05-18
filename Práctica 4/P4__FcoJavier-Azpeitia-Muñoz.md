@@ -31,7 +31,7 @@ Esta es una captura tomada tras realizar una prueba a uno de los servidores fina
 Her resaltado las medidas mas importantes y con las cuales voy a realizar unas tablas y unas gráficas para ilustrar estos resultados.  
 
 Tablas:
---------
+=====
 
 ![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%204/images/ab_table_finalserver1.png?raw=true)
 
@@ -41,7 +41,47 @@ Tablas:
 
 
 Gráficas:
----------
+======
+
+Servidor final:
+----------------
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%204/images/ab_graf_finalserver1.png?raw=true)
+
+Balanceador nginx:
+----------------
+
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%204/images/ab_graf_nginx.png?raw=true)
+
+Balanceador haproxy:
+----------------
+
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%204/images/ab_graf_haproxy.png?raw=true)   
+
+
+
+
+**Fin de las pruebas con Apache Benchmark.**    
+
+
+
+Siege.
+====
+
+Al igual que con Apache Benchmark voy a probar Siege en Windows, para ello, en primer lugar descargé Siege para Windows de esta URL:
+[Siege Download](https://code.google.com/p/siege-windows/)  
+
+En esa misma dirección podemos encontrar varios ejemplos de como se usa Siege desde un SO Windows.
+
+
+
+
+
+
+
+
+
+
+
 
 
 
