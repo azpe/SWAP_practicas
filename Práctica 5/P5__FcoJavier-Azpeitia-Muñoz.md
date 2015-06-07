@@ -78,10 +78,88 @@ Salimos de MySQL y en el terminal escribimos lo siguiente para importar la infor
 
 `mysql -u root -p contactos < /root/contactos.sql`  
 
-Una vez esto hecho ya tenems la información perfectamente replicada en ambas máquinas, pero el proceso no es automático, para que lo sea, tenemos que realizar la tercera parte de esta práctica:   
+Una vez esto hecho ya tenemos la información perfectamente replicada en ambas máquinas, pero el proceso no es automático, para que lo sea, tenemos que realizar la tercera parte de esta práctica:   
 
 
 Parte 3: Replicación automática mediante Master-Slave
 -----------------------------------------------------------
+
+En esta última parte de la práctica, el objetivo es conseguir que el servidor DB2 Slave copie cada cambio que se realice en el DB1 Master de forma autónoma y segura. Para hacer esto, en primer lugar configuraremos el Maestro.  
+
+Abrimos el fichero /etc/mysql/my.cnf como root y hacemos lo siguientes cambios:
+
+Comentamos la siguiente linea:
+
+IMG config1
+
+Agregamos una linea para que cree logs de errores donde nosotros queremos;
+
+IMG config2
+
+Agregamos una linea para identificar este server como server-id = 1
+
+IMG config3
+
+Añadimos una linea para el registro binario donde estan todas las actualizaciones:
+
+IMG config4
+
+Reiniciamos el servicio mediante:
+
+`/etc/init.d/mysql restart`
+
+Ahora vamos a configurar el DB2 Slave
+ 
+Agregamos una linea para identificar este server como server-id = 2
+
+IMG config5
+
+Ya tenemos el Slave configurado, ahora volvemos al Master para crear el usuario que usará el Slave para hacer la replicaciones:
+
+IMG config7
+
+Al final de la imagen anterior, vemos que se mostró la información del master que ahora usaremos en el Slave para establecer la conexión con el Master:
+
+IMG config8
+
+Ya tenemos todo configurado y listo para funcionar, para probar si funciona correctamente, basta con hacer una inserción en el Master y ver si sale en el Slave, por ejemplo esta inserción:
+
+IMG config9
+
+Para ver que funciona, hice una consulta antes de la inserción del Master, y después de la insercion del Master, volví a lanzar la misma consulta, y como vemos se ha actualizado de forma totalmente automática.
+
+IMG config10
+
+Si quisiéramos agregar mas Slaves a nuestro sistema, el proceso sería el mismo con al diferencia de que el server-id ha de ser diferente para cada server.
+
+
+
+
+ 
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
