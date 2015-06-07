@@ -27,7 +27,7 @@ Para estar seguros de que se ha creado correctamente podemos usar el comando;
 
 Y veremos algo como esto:
 
-IMG basesdedatos
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%205/imagenes/basesdedatos.PNG?raw=true)
 
 
 Ahora creamos una tabla en nuestra base de datos;
@@ -42,7 +42,7 @@ Ahora para ver que todo esta correcto podemos hacer una consulta mediante;
 
 `select * from datos;`
 
-IMG insert
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%205/imagenes/insert.PNG?raw=true)
 
 
 Parte 2: Replicación manual de la estructura y los datos.
@@ -60,7 +60,7 @@ Ahora ya estan bloqueadas las tablas para solo lectura y podemos proceder con la
 
 `mysqldump contactos -u root -p > /root/contactos.sql`
 
-IMG mysqldump1
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%205/imagenes/mysqldump1.PNG?raw=true)
 
 Ahora tenemos que irnos a la máquina DB2 Slave, donde nuestra intención es importar el fichero creado en el Master. Para hacer esto, primero tenemos que tener ssh instalado en nuestras máquinas, usando `apt-get install openssh` por ejemplo, ahora desde la máquina DB2 Slave, y como root escribimos: 
 
@@ -68,7 +68,7 @@ Ahora tenemos que irnos a la máquina DB2 Slave, donde nuestra intención es imp
 
 En mi caso ha quedado como vemos ne la captura:
 
-IMG scp
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%205/imagenes/scp.PNG?raw=true)
 
 Una vez esto hecho, hay que crear una base de datos nueva y vacía en DB2 Slave:
 
@@ -90,19 +90,19 @@ Abrimos el fichero /etc/mysql/my.cnf como root y hacemos lo siguientes cambios:
 
 Comentamos la siguiente linea:
 
-IMG config1
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%205/imagenes/config1.png?raw=true)
 
 Agregamos una linea para que cree logs de errores donde nosotros queremos;
 
-IMG config2
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%205/imagenes/config2.png?raw=true)
 
 Agregamos una linea para identificar este server como server-id = 1
 
-IMG config3
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%205/imagenes/config3.png?raw=true)
 
 Añadimos una linea para el registro binario donde estan todas las actualizaciones:
 
-IMG config4
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%205/imagenes/config4.png?raw=true)
 
 Reiniciamos el servicio mediante:
 
@@ -112,23 +112,23 @@ Ahora vamos a configurar el DB2 Slave
  
 Agregamos una linea para identificar este server como server-id = 2
 
-IMG config5
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%205/imagenes/config5.png?raw=true)
 
 Ya tenemos el Slave configurado, ahora volvemos al Master para crear el usuario que usará el Slave para hacer la replicaciones:
 
-IMG config7
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%205/imagenes/config7.PNG?raw=true)
 
 Al final de la imagen anterior, vemos que se mostró la información del master que ahora usaremos en el Slave para establecer la conexión con el Master:
 
-IMG config8
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%205/imagenes/config8.PNG?raw=true)
 
 Ya tenemos todo configurado y listo para funcionar, para probar si funciona correctamente, basta con hacer una inserción en el Master y ver si sale en el Slave, por ejemplo esta inserción:
 
-IMG config9
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%205/imagenes/config9.PNG?raw=true)
 
 Para ver que funciona, hice una consulta antes de la inserción del Master, y después de la insercion del Master, volví a lanzar la misma consulta, y como vemos se ha actualizado de forma totalmente automática.
 
-IMG config10
+![](https://github.com/azpe/SWAP_practicas/blob/master/Pr%C3%A1ctica%205/imagenes/config10.PNG?raw=true)
 
 Si quisiéramos agregar mas Slaves a nuestro sistema, el proceso sería el mismo con al diferencia de que el server-id ha de ser diferente para cada server.
 
